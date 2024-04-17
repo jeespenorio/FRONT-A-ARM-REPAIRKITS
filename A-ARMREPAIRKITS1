@@ -1,0 +1,132 @@
+import pandas as pd
+
+# Initial data
+data1 = {'Make': ['utv/atv'], 
+         'Model': ['all models'], 
+         'Vendor Code': ['NACH'], 
+         'Vendor Name': ['NACHMAN INTERNATIONAL CO.LTD'],
+         'MPN': ['AT-04348-2'], 
+         'AD Item Number': ['127391'], 
+         'Vendor Notes': ['REF# : 50-1126, 50-114350-1126, 50-1143; FRONT A-ARM REPAIR KITS: UPPER & LOWER'], 
+        }
+
+# List of models
+new_list_models = [
+    
+'Quest 50',
+'Quest 500 4X4',
+'Quest 500 4x4 XT',
+'Renegade 500',
+'Renegade 570',
+'Renegade 570 X mr',
+'Traxter 500 4x4 Auto',
+'Traxter 500 4x4 Auto XT',
+'Traxter 500 Auto 4x4 CVT',
+'Traxter 500 XL',
+'Quest 650 4x4',
+'Quest 650 4x4 Max',
+'Quest 650 4x4 XT',
+'Renegade 800',
+'Renegade 800 X',
+'Renegade 800R',
+'Renegade 800R X xc',
+'Renegade 850',
+'Renegade 850 X xc',
+'Renegade 1000 EFI X xc',
+'Renegade 1000',
+'Renegade 1000 X xc',
+'Renegade 1000 X mr',
+'Renegade 1000R X xc',
+'Defender HD8',
+'Defender HD8 DPS',
+'Defender HD10',
+'Defender HD10 DPS',
+'Defender HD10 XT',
+'Defender HD8 XT',
+'Defender HD10 XT CAB',
+'Defender HD10 Mossy Oak Hunting Edition',
+'Defender MAX HD10 DPS',
+'Defender MAX HD8 DPS',
+'Defender MAX HD8 XT',
+'Defender MAX HD10 XT',
+'Defender HD5',
+'Defender HD5 DPS',
+'Defender HD8 XT CAB',
+'Defender MAX HD8',
+'Defender MAX HD10 XT CAB',
+'Defender HD10 XT-P',
+'Defender MAX HD10 Lone Star',
+'Defender HD10 X mr',
+'Defender HD10 Mossy Oak Edition',
+'Defender MAX HD10 X mr',
+'Defender HD10 6X6 DPS',
+'Defender PRO HD10',
+'Defender PRO HD10 XT',
+'Defender HD10 Limited',
+'Defender MAX HD10 Limited',
+'Defender HD8 DPS CAB',
+'Defender HD10 6X6 XT',
+'Defender MAX HD9 DPS',
+'Defender HD7',
+'Defender HD9 DPS',
+'Defender HD9 DPS CAB',
+'Defender HD7 DPS',
+'Defender MAX HD7',
+'Defender MAX HD9 XT',
+'Defender HD9 XT',
+'Defender HD9',
+'Defender MAX HD9',
+'Defender PRO HD10 Limited',
+'Defender PRO HD10 Lone Star',
+'Commander 1000 X',
+'Commander 1000 XT',
+'Commander 800R XT',
+'Commander 800R',
+'Commander 1000',
+'Commander 1000 Limited',
+'Commander 800R DPS',
+'Commander E',
+'Commander 1000 DPS',
+'Commander 1000 XT-P',
+'Commander E LSV',
+'Commander Max 1000 XT',
+'Commander Max 1000 DPS',
+'Commander E LSV SE',
+'Commander E XT',
+'Commander Max 1000 Limited',
+'Commander 1000 Mossy Oak Hunting Edition',
+'Commander Max 800R DPS',
+'Commander 1000R Limited',
+'Commander Max 1000R Limited',
+'Commander 1000R DPS',
+'Commander 1000R XT',
+'Commander 1000R Mossy Oak Hunting Edition',
+'Commander Max 1000R DPS',
+'Commander Max 1000R XT',
+'Commander 1000R XT-P',
+'Commander 1000R X mr',
+'Commander Max 1000R XT-P'
+
+]  
+
+# Range of years
+years = list(range(2000, 2024))
+
+# Function to generate DataFrame for each model
+def generate_df(model, data, year):
+    data_copy = data.copy()  # Create a copy of data1 to avoid modifying the original dictionary
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+# Generate DataFrames for all sets of data
+dfs = []
+for year in years:
+    df1 = pd.concat([generate_df(model, data1, year) for model in new_list_models], ignore_index=True)
+    dfs.append(df1)
+
+# Concatenate all DataFrames
+final_df = pd.concat(dfs, ignore_index=True)
+
+# Print the final DataFrame
+final_df
